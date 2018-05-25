@@ -1,8 +1,16 @@
 {-# LANGUAGE TypeApplications #-}
 
-module Data.Time.Quasi where
+module Data.Time.Quasi
+    ( utcTime
+    , day
+    , timeOfDay
+    , localTime
+    , timeZone
+    , zonedTime
+    ) where
 
 import Data.Time (Day, LocalTime, TimeOfDay, TimeZone, UTCTime, ZonedTime)
+import Data.Time.Format.ISO8601 (ISO8601)
 import qualified Data.Time.Format.ISO8601 as Time
 import Language.Haskell.TH.Syntax
 import Language.Haskell.TH.Quote (QuasiQuoter(..))
@@ -11,7 +19,7 @@ import Language.Haskell.TH.Quote (QuasiQuoter(..))
 utcTime :: QuasiQuoter
 utcTime =
   QuasiQuoter
-  { quoteExp = \str -> Time.iso8601ParseM @Q @UTCTime str >>= liftData
+  { quoteExp = \str -> parse @UTCTime str >>= liftData
   , quotePat = \_ -> fail "utcTime: cannot quote pattern!"
   , quoteType = \_ -> fail "utcTime: cannot quote type!"
   , quoteDec = \_ -> fail "utcTime: cannot quote declaration!"
@@ -20,7 +28,7 @@ utcTime =
 day :: QuasiQuoter
 day =
   QuasiQuoter
-  { quoteExp = \str -> Time.iso8601ParseM @Q @Day str >>= liftData
+  { quoteExp = \str -> parse @Day str >>= liftData
   , quotePat = \_ -> fail "day: cannot quote pattern!"
   , quoteType = \_ -> fail "day: cannot quote type!"
   , quoteDec = \_ -> fail "day: cannot quote declaration!"
@@ -29,7 +37,7 @@ day =
 timeOfDay :: QuasiQuoter
 timeOfDay =
   QuasiQuoter
-  { quoteExp = \str -> Time.iso8601ParseM @Q @TimeOfDay str >>= liftData
+  { quoteExp = \str -> parse @TimeOfDay str >>= liftData
   , quotePat = \_ -> fail "timeOfDay: cannot quote pattern!"
   , quoteType = \_ -> fail "timeOfDay: cannot quote type!"
   , quoteDec = \_ -> fail "timeOfDay: cannot quote declaration!"
@@ -38,7 +46,7 @@ timeOfDay =
 localTime :: QuasiQuoter
 localTime =
   QuasiQuoter
-  { quoteExp = \str -> Time.iso8601ParseM @Q @LocalTime str >>= liftData
+  { quoteExp = \str -> parse @LocalTime str >>= liftData
   , quotePat = \_ -> fail "localTime: cannot quote pattern!"
   , quoteType = \_ -> fail "localTime: cannot quote type!"
   , quoteDec = \_ -> fail "localTime: cannot quote declaration!"
@@ -47,7 +55,7 @@ localTime =
 timeZone :: QuasiQuoter
 timeZone =
   QuasiQuoter
-  { quoteExp = \str -> Time.iso8601ParseM @Q @TimeZone str >>= liftData
+  { quoteExp = \str -> parse @TimeZone str >>= liftData
   , quotePat = \_ -> fail "timeZone: cannot quote pattern!"
   , quoteType = \_ -> fail "timeZone: cannot quote type!"
   , quoteDec = \_ -> fail "timeZone: cannot quote declaration!"
@@ -56,8 +64,12 @@ timeZone =
 zonedTime :: QuasiQuoter
 zonedTime =
   QuasiQuoter
-  { quoteExp = \str -> Time.iso8601ParseM @Q @ZonedTime str >>= liftData
+  { quoteExp = \str -> parse @ZonedTime str >>= liftData
   , quotePat = \_ -> fail "zonedTime: cannot quote pattern!"
   , quoteType = \_ -> fail "zonedTime: cannot quote type!"
   , quoteDec = \_ -> fail "zonedTime: cannot quote declaration!"
   }
+
+
+parse :: ISO8601 t => String -> Q t
+parse str = Time.iso8601ParseM str
