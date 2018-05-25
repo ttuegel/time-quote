@@ -1,6 +1,7 @@
+{-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE TypeApplications #-}
 
-module Data.Time.Quasi
+module Data.Time.Quote
     ( utcTime
     , day
     , timeOfDay
@@ -9,6 +10,8 @@ module Data.Time.Quasi
     , zonedTime
     ) where
 
+import qualified Data.Char as Char
+import qualified Data.List as List
 import Data.Time (Day, LocalTime, TimeOfDay, TimeZone, UTCTime, ZonedTime)
 import Data.Time.Format.ISO8601 (ISO8601)
 import qualified Data.Time.Format.ISO8601 as Time
@@ -16,6 +19,14 @@ import Language.Haskell.TH.Syntax
 import Language.Haskell.TH.Quote (QuasiQuoter(..))
 
 
+-- $setup
+-- >>> :set -XQuasiQuotes
+
+
+-- |
+-- >>> [utcTime| 2018-05-25T15:36:27.416462897Z |]
+-- 2018-05-25 15:36:27.416462897 UTC
+--
 utcTime :: QuasiQuoter
 utcTime =
   QuasiQuoter
@@ -25,6 +36,10 @@ utcTime =
   , quoteDec = \_ -> fail "utcTime: cannot quote declaration!"
   }
 
+-- |
+-- >>> [day| 2018-05-25 |]
+-- 2018-05-25
+--
 day :: QuasiQuoter
 day =
   QuasiQuoter
@@ -34,6 +49,10 @@ day =
   , quoteDec = \_ -> fail "day: cannot quote declaration!"
   }
 
+-- |
+-- >>> [timeOfDay| 15:36:27.416462897 |]
+-- 15:36:27.416462897
+--
 timeOfDay :: QuasiQuoter
 timeOfDay =
   QuasiQuoter
@@ -43,6 +62,10 @@ timeOfDay =
   , quoteDec = \_ -> fail "timeOfDay: cannot quote declaration!"
   }
 
+-- |
+-- >>> [localTime| 2018-05-25T10:36:27.416462897 |]
+-- 2018-05-25 10:36:27.416462897
+--
 localTime :: QuasiQuoter
 localTime =
   QuasiQuoter
@@ -52,6 +75,10 @@ localTime =
   , quoteDec = \_ -> fail "localTime: cannot quote declaration!"
   }
 
+-- |
+-- >>> [timeZone| -05:00 |]
+-- -0500
+--
 timeZone :: QuasiQuoter
 timeZone =
   QuasiQuoter
@@ -61,6 +88,10 @@ timeZone =
   , quoteDec = \_ -> fail "timeZone: cannot quote declaration!"
   }
 
+-- |
+-- >>> [zonedTime| 2018-05-25T10:36:27.416462897-05:00 |]
+-- 2018-05-25 10:36:27.416462897 -0500
+--
 zonedTime :: QuasiQuoter
 zonedTime =
   QuasiQuoter
@@ -72,4 +103,6 @@ zonedTime =
 
 
 parse :: ISO8601 t => String -> Q t
-parse str = Time.iso8601ParseM str
+parse = Time.iso8601ParseM . strip
+  where
+    strip = List.dropWhileEnd Char.isSpace . List.dropWhile Char.isSpace

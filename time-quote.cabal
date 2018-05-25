@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e55af339d9d53c4e60b3b21a85bfa8346626305073718e44e61316f20ca33913
+-- hash: 7f72e76336d1952d9bca53e3f85dafca2334d4133e58017e5ef80e2ddd952ebe
 
 name:           time-quote
 version:        1.9.0.0
@@ -11,13 +11,29 @@ cabal-version:  >= 1.10
 
 library
   exposed-modules:
-      Data.Time.Quasi
+      Data.Time.Quote
   other-modules:
       Paths_time_quote
   hs-source-dirs:
       src/
   build-depends:
       base
+    , template-haskell
+    , time ==1.9.*
+  default-language: Haskell2010
+
+test-suite doctest
+  type: exitcode-stdio-1.0
+  main-is: doctest-driver.hs
+  other-modules:
+      Paths_time_quote
+  hs-source-dirs:
+      test/
+  ghc-options: -threaded
+  build-depends:
+      base
+    , doctest
+    , doctest-discover
     , template-haskell
     , time ==1.9.*
   default-language: Haskell2010

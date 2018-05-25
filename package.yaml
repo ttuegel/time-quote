@@ -8,5 +8,15 @@ dependencies:
 
 library:
   source-dirs: src/
-  exposed:
-    - Data.Time.Quasi
+  exposed-modules:
+    - Data.Time.Quote
+
+tests:
+  doctest:
+    main: doctest-driver.hs
+    source-dirs: test/
+    ghc-options: -threaded
+    dependencies:
+      - base
+      - doctest
+      - doctest-discover
