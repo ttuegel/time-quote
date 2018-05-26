@@ -3,6 +3,6 @@ ghc:
   - "8.0"
   - "8.2"
   - "8.4"
-
-install: cabal install --only-dependencies --enable-tests --allow-newer
-script: cabal configure --enable-tests --allow-newer && cabal build && cabal test
+install:
+  - cabal install doctest doctest-discover
+  - cabal install time
