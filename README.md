@@ -10,7 +10,7 @@ By using quasi-quotes for literals, parse errors are found by the compiler.
 
 To use quasi-quotes, place the pragma at the top of the source file,
 
-```.haskell
+```haskell
 {-# LANGUAGE QuasiQuotes #-}
 ```
 
@@ -23,7 +23,7 @@ If using GHCi, enter at the prompt
 `time-quote` provides quasi-quoters for each type from the [`time`](https://hackage.haskell.org/package/time) library that defines an [`ISO8601`](https://hackage.haskell.org/package/time-1.9.1/docs/Data-Time-Format-ISO8601.html#t:ISO8601) instance.
 Use the quasi-quoters to quote a literal date or time of the corresponding type; for example
 
-```.haskell
+```haskell
 [utcTime| 2018-05-25T15:36:27.416462897Z |]  -- :: UTCTime
 ```
 
