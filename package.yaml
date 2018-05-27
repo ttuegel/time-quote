@@ -1,7 +1,11 @@
 name: time-quote
 version: 1.9.0.0
 license: GPL-3
+license-file: COPYING
 synopsis: Quasi-quoters for dates and times
+author: Thomas Tuegel <ttuegel@mailbox.org>
+maintainer: Thomas Tuegel <ttuegel@mailbox.org>
+copyright: (C) 2018  Thomas Tuegel <ttuegel@mailbox.org>
 
 dependencies:
   - base < 5

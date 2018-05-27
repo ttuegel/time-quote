@@ -9,5 +9,6 @@ mkDerivation {
   testHaskellDepends = [
     base doctest doctest-discover template-haskell time
   ];
+  description = "Quasi-quoters for dates and times";
   license = stdenv.lib.licenses.gpl3;
 }
