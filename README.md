@@ -1,4 +1,4 @@
-# time-quote: quasi-quotes for time
+# time-quote: quasi-quotes for dates and times
 
 [![Hackage version](https://img.shields.io/hackage/v/time-quote.svg?label=Hackage)](https://hackage.haskell.org/package/time-quote) [![Build Status](https://travis-ci.org/ttuegel/time-quote.svg?branch=develop)](https://travis-ci.org/ttuegel/time-quote)
 

@@ -9,6 +9,5 @@ mkDerivation {
   testHaskellDepends = [
     base doctest doctest-discover template-haskell time
   ];
-  license = stdenv.lib.licenses.unfree;
-  hydraPlatforms = stdenv.lib.platforms.none;
+  license = stdenv.lib.licenses.gpl3;
 }

@@ -2,10 +2,11 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 38730e3d85619491211510104873b3be6011e707b924db5c402ce8429f779dff
+-- hash: f82170956e9e432f26d874ee291480e33467d31a0abd6c6e0adbc83cdc6964f4
 
 name:           time-quote
 version:        1.9.0.0
+synopsis:       Quasi-quoters for dates and times
 license:        GPL-3
 build-type:     Simple
 cabal-version:  >= 1.10

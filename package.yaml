@@ -1,6 +1,7 @@
 name: time-quote
 version: 1.9.0.0
 license: GPL-3
+synopsis: Quasi-quoters for dates and times
 
 dependencies:
   - base < 5
