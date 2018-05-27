@@ -56,6 +56,8 @@ module Data.Time.Quote
     , localTime
     , timeZone
     , zonedTime
+    , calendarDiffDays
+    , calendarDiffTime
     ) where
 
 import qualified Data.Char as Char
