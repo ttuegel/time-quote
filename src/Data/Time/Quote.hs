@@ -1,4 +1,6 @@
 {-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeApplications #-}
 
 {-
@@ -58,9 +60,12 @@ module Data.Time.Quote
 
 import qualified Data.Char as Char
 import qualified Data.List as List
-import Data.Time (Day, LocalTime, TimeOfDay, TimeZone, UTCTime, ZonedTime)
+import Data.Time
+    ( CalendarDiffDays(..), Day, LocalTime, TimeOfDay, TimeZone, UTCTime
+    , ZonedTime )
 import Data.Time.Format.ISO8601 (ISO8601)
 import qualified Data.Time.Format.ISO8601 as Time
+import Language.Haskell.TH.Lib
 import Language.Haskell.TH.Syntax
 import Language.Haskell.TH.Quote (QuasiQuoter(..))
 
@@ -153,6 +158,28 @@ zonedTime =
   , quoteType = \_ -> fail "zonedTime: cannot quote type!"
   , quoteDec = \_ -> fail "zonedTime: cannot quote declaration!"
   }
+
+-- | Quote a value of type 'CalendarDiffDays' in @PyYmMdD@ format.
+--
+-- >>> [calendarDiffDays| P2018Y5M25D |]
+-- P24221M25D
+--
+calendarDiffDays :: QuasiQuoter
+calendarDiffDays =
+  QuasiQuoter
+  { quoteExp = \str -> parse @CalendarDiffDays str >>= lift
+  , quotePat = \_ -> fail "calendarDiffDays: cannot quote pattern!"
+  , quoteType = \_ -> fail "calendarDiffDays: cannot quote type!"
+  , quoteDec = \_ -> fail "calendarDiffDays: cannot quote declaration!"
+  }
+  where
+    lift CalendarDiffDays {..} =
+      [|
+        CalendarDiffDays
+        { cdMonths = $(liftData cdMonths)
+        , cdDays = $(liftData cdDays)
+        }
+       |]
 
 
 parse :: ISO8601 t => String -> Q t
