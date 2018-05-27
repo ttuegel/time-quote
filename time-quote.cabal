@@ -2,10 +2,11 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 176d5ab1ada1c335b78d37f05b54fb9eb016662fce49cfb16e609b482292a2b8
+-- hash: 38730e3d85619491211510104873b3be6011e707b924db5c402ce8429f779dff
 
 name:           time-quote
 version:        1.9.0.0
+license:        GPL-3
 build-type:     Simple
 cabal-version:  >= 1.10
 
