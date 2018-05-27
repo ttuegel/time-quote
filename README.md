@@ -20,7 +20,7 @@ If using GHCi, enter at the prompt
 > :set -XQuasiQuotes
 ```
 
-`time-quote` provides quasi-quoters for each type from the `time` library that defines an `ISO8601` instance.
+`time-quote` provides quasi-quoters for each type from the [`time`](https://hackage.haskell.org/package/time) library that defines an [`ISO8601`](https://hackage.haskell.org/package/time-1.9.1/docs/Data-Time-Format-ISO8601.html#t:ISO8601) instance.
 Use the quasi-quoters to quote a literal date or time of the corresponding type; for example
 
 ```.haskell
