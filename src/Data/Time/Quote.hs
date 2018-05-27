@@ -19,6 +19,34 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  -}
 
+{-|
+    Module      : Data.Time.Quote
+    Description : Quasi-quotes for dates and times
+    Copyright   : (C) 2018  Thomas Tuegel <ttuegel@mailbox.org>
+    License     : GPL-3
+    Maintainer  : Thomas Tuegel <ttuegel@mailbox.org>
+
+This module provides quasi-quoters to parse dates and times according to ISO
+8601 formats.  By using quasi-quotes for literals, parse errors are found by the
+compiler.
+
+To use quasi-quotes, place the @LANGUAGE QuasiQuotes@ pragma at the top of the
+source file or use the GHC command-line option @-XQuasiQuotes@. If using GHCi,
+enter at the prompt
+
+>>> :set -XQuasiQuotes
+
+Quasi-quoters are provided for each type that defines an 'ISO8601' instance.
+Use the quasi-quoters to quote a literal date or time of the corresponding type;
+for example
+
+> [utcTime| 2018-05-25T15:36:27.416462897Z |]  -- :: UTCTime
+
+All quasi-quoters accept optional whitespace before and after the quoted
+value. Refer to the list below for details about the expected format for each
+type.
+ -}
+
 module Data.Time.Quote
     ( utcTime
     , day
@@ -41,7 +69,8 @@ import Language.Haskell.TH.Quote (QuasiQuoter(..))
 -- >>> :set -XQuasiQuotes
 
 
--- |
+-- | Quote a value of type 'UTCTime' in @yyyy-mm-ddThh:mm:ss[.sss]Z@ format.
+--
 -- >>> [utcTime| 2018-05-25T15:36:27.416462897Z |]
 -- 2018-05-25 15:36:27.416462897 UTC
 --
@@ -54,7 +83,8 @@ utcTime =
   , quoteDec = \_ -> fail "utcTime: cannot quote declaration!"
   }
 
--- |
+-- | Quote a value of type 'Day' in @yyyy-mm-dd@ format.
+--
 -- >>> [day| 2018-05-25 |]
 -- 2018-05-25
 --
@@ -67,7 +97,8 @@ day =
   , quoteDec = \_ -> fail "day: cannot quote declaration!"
   }
 
--- |
+-- | Quote a value of type 'TimeOfDay' in @hh:mm:ss[.sss]@ format.
+--
 -- >>> [timeOfDay| 15:36:27.416462897 |]
 -- 15:36:27.416462897
 --
@@ -80,7 +111,8 @@ timeOfDay =
   , quoteDec = \_ -> fail "timeOfDay: cannot quote declaration!"
   }
 
--- |
+-- | Quote a value of type 'LocalTime' in @yyyy-mm-ddThh:mm:ss[.sss]@ format.
+--
 -- >>> [localTime| 2018-05-25T10:36:27.416462897 |]
 -- 2018-05-25 10:36:27.416462897
 --
@@ -93,7 +125,8 @@ localTime =
   , quoteDec = \_ -> fail "localTime: cannot quote declaration!"
   }
 
--- |
+-- | Quote a value of type 'TimeZone' in @±hh:mm@ format.
+--
 -- >>> [timeZone| -05:00 |]
 -- -0500
 --
@@ -106,7 +139,9 @@ timeZone =
   , quoteDec = \_ -> fail "timeZone: cannot quote declaration!"
   }
 
--- |
+-- | Quote a value of type 'ZonedTime' in @yyyy-mm-ddThh:mm:ss[.sss]±hh:mm@
+-- format.
+--
 -- >>> [zonedTime| 2018-05-25T10:36:27.416462897-05:00 |]
 -- 2018-05-25 10:36:27.416462897 -0500
 --
