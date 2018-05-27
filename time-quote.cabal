@@ -2,11 +2,12 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 13180d6dc5d99cb216496c8a74960ec578f220990aeffe423761f0f0dbe3c407
+-- hash: c0dc1cbf0cbc17ce4899b7c0bec3435da46883f1f7ec7452f7bdb8474427636f
 
 name:           time-quote
 version:        1.9.0.0
 synopsis:       Quasi-quoters for dates and times
+category:       Time
 author:         Thomas Tuegel <ttuegel@mailbox.org>
 maintainer:     Thomas Tuegel <ttuegel@mailbox.org>
 copyright:      (C) 2018  Thomas Tuegel <ttuegel@mailbox.org>

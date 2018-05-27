@@ -6,6 +6,7 @@ synopsis: Quasi-quoters for dates and times
 author: Thomas Tuegel <ttuegel@mailbox.org>
 maintainer: Thomas Tuegel <ttuegel@mailbox.org>
 copyright: (C) 2018  Thomas Tuegel <ttuegel@mailbox.org>
+category: Time
 
 dependencies:
   - base < 5
