@@ -61,8 +61,8 @@ module Data.Time.Quote
 import qualified Data.Char as Char
 import qualified Data.List as List
 import Data.Time
-    ( CalendarDiffDays(..), Day, LocalTime, TimeOfDay, TimeZone, UTCTime
-    , ZonedTime )
+    ( CalendarDiffDays(..), CalendarDiffTime(..), Day, LocalTime, TimeOfDay
+    , TimeZone, UTCTime, ZonedTime )
 import Data.Time.Format.ISO8601 (ISO8601)
 import qualified Data.Time.Format.ISO8601 as Time
 import Language.Haskell.TH.Lib
@@ -178,6 +178,28 @@ calendarDiffDays =
         CalendarDiffDays
         { cdMonths = $(liftData cdMonths)
         , cdDays = $(liftData cdDays)
+        }
+       |]
+
+-- | Quote a value of type 'CalendarDiffTime' in @PyYmMdDThHmMs[.sss]S@ format.
+--
+-- >>> [calendarDiffTime| P2018Y5M25DT15H36M27.416462897S |]
+-- P24221MT2216187.416462897S
+--
+calendarDiffTime :: QuasiQuoter
+calendarDiffTime =
+  QuasiQuoter
+  { quoteExp = \str -> parse @CalendarDiffTime str >>= lift
+  , quotePat = \_ -> fail "calendarDiffTime: cannot quote pattern!"
+  , quoteType = \_ -> fail "calendarDiffTime: cannot quote type!"
+  , quoteDec = \_ -> fail "calendarDiffTime: cannot quote declaration!"
+  }
+  where
+    lift CalendarDiffTime {..} =
+      [|
+        CalendarDiffTime
+        { ctMonths = $(liftData ctMonths)
+        , ctTime = $(liftData ctTime)
         }
        |]
 
