@@ -6,6 +6,8 @@ dependencies:
   - template-haskell
   - time == 1.9.*
 
+ghc-options: -Wall -Werror
+
 library:
   source-dirs: src/
   exposed-modules:

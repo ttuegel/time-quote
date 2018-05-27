@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7f72e76336d1952d9bca53e3f85dafca2334d4133e58017e5ef80e2ddd952ebe
+-- hash: b14f9f0a17ea0db608019b0a4831110581aa7affa5e6a6bcaddba567fb8dd6e6
 
 name:           time-quote
 version:        1.9.0.0
@@ -16,6 +16,7 @@ library
       Paths_time_quote
   hs-source-dirs:
       src/
+  ghc-options: -Wall -Werror
   build-depends:
       base
     , template-haskell
@@ -29,7 +30,7 @@ test-suite doctest
       Paths_time_quote
   hs-source-dirs:
       test/
-  ghc-options: -threaded
+  ghc-options: -Wall -Werror -threaded
   build-depends:
       base
     , doctest
