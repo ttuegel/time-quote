@@ -2,7 +2,7 @@ name: time-quote
 version: 1.9.0.0
 
 dependencies:
-  - base
+  - base < 5
   - template-haskell
   - time == 1.9.*
 

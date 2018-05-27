@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5b97c59a964eaace6244701cc4f64cad8e5075ff2ae0d828de19918cdb091376
+-- hash: 176d5ab1ada1c335b78d37f05b54fb9eb016662fce49cfb16e609b482292a2b8
 
 name:           time-quote
 version:        1.9.0.0
@@ -18,7 +18,7 @@ library
       src/
   ghc-options: -Wall
   build-depends:
-      base
+      base <5
     , template-haskell
     , time ==1.9.*
   default-language: Haskell2010
