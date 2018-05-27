@@ -9,6 +9,7 @@ mkDerivation {
   testHaskellDepends = [
     base doctest doctest-discover template-haskell time
   ];
-  license = stdenv.lib.licenses.unfree;
-  hydraPlatforms = stdenv.lib.platforms.none;
+  homepage = "https://github.com/ttuegel/time-quote#readme";
+  description = "Quasi-quoters for dates and times";
+  license = stdenv.lib.licenses.gpl3;
 }
