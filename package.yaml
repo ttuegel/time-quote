@@ -2,11 +2,17 @@ name: time-quote
 version: 1.9.0.0
 license: GPL-3
 license-file: COPYING
-synopsis: Quasi-quoters for dates and times
 author: Thomas Tuegel <ttuegel@mailbox.org>
 maintainer: Thomas Tuegel <ttuegel@mailbox.org>
 copyright: (C) 2018  Thomas Tuegel <ttuegel@mailbox.org>
 category: Time
+github: ttuegel/time-quote
+
+synopsis: Quasi-quoters for dates and times
+description: >-
+  @time-quote@ provides quasi-quoters to parse dates and times according to ISO
+  8601 formats. By using quasi-quotes for literals, parse errors are found by
+  the compiler.
 
 dependencies:
   - base < 5
