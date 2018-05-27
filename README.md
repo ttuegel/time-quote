@@ -1,6 +1,6 @@
 # time-quote: quasi-quotes for time
 
-[![Build Status](https://travis-ci.org/ttuegel/time-quote.svg?branch=develop)](https://travis-ci.org/ttuegel/time-quote)
+[![Hackage version](https://img.shields.io/hackage/v/time-quote.svg?label=Hackage)](https://hackage.haskell.org/package/time-quote) [![Build Status](https://travis-ci.org/ttuegel/time-quote.svg?branch=develop)](https://travis-ci.org/ttuegel/time-quote)
 
 `time-quote` provides quasi-quoters to parse dates and times according to ISO 8601 formats.
 By using quasi-quotes for literals, parse errors are found by the compiler.
