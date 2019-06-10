@@ -1,8 +1,10 @@
--- This file has been generated from package.yaml by hpack version 0.27.0.
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b8d12ba2b84e8f755e673b65fb0d8ca2610510b22193873931f73c3192c1505a
+-- hash: e69dbfcc66f4811f9d4e447b660d5d484072c9039d8f02c430ba3a1c8886c78d
 
 name:           time-quote
 version:        1.9.0.0
@@ -17,7 +19,6 @@ copyright:      (C) 2018  Thomas Tuegel <ttuegel@mailbox.org>
 license:        GPL-3
 license-file:   COPYING
 build-type:     Simple
-cabal-version:  >= 1.10
 
 source-repository head
   type: git
@@ -34,7 +35,8 @@ library
   build-depends:
       base <5
     , template-haskell
-    , time ==1.9.*
+    , time
+    , time-compat
   default-language: Haskell2010
 
 test-suite doctest
@@ -50,5 +52,6 @@ test-suite doctest
     , doctest
     , doctest-discover
     , template-haskell
-    , time ==1.9.*
+    , time
+    , time-compat
   default-language: Haskell2010
