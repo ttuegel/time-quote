@@ -17,7 +17,8 @@ description: >-
 dependencies:
   - base < 5
   - template-haskell
-  - time == 1.9.*
+  - time
+  - time-compat
 
 ghc-options: -Wall
 

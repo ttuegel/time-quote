@@ -63,10 +63,12 @@ module Data.Time.Quote
 import qualified Data.Char as Char
 import qualified Data.List as List
 import Data.Time
-    ( CalendarDiffDays(..), CalendarDiffTime(..), Day, LocalTime, TimeOfDay
+    ( Day, LocalTime, TimeOfDay
     , TimeZone, UTCTime, ZonedTime )
-import Data.Time.Format.ISO8601 (ISO8601)
-import qualified Data.Time.Format.ISO8601 as Time
+import Data.Time.Calendar.Compat (CalendarDiffDays(..))
+import Data.Time.LocalTime.Compat (CalendarDiffTime(..))
+import Data.Time.Format.ISO8601.Compat (ISO8601)
+import qualified Data.Time.Format.ISO8601.Compat as Time
 import Language.Haskell.TH.Lib
 import Language.Haskell.TH.Syntax
 import Language.Haskell.TH.Quote (QuasiQuoter(..))
